@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>Risk Assessment</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+<!-- TOP -->
+
+<div class="quiz-top">
+
+<p class="quiz-small">
+Risk Assessment
+</p>
+
+<h1 class="quiz-title">
+Question 6 of 10
+</h1>
+
+</div>
+
+<!-- PROGRESS BAR -->
+
+<div class="progress-bar">
+
+<div class="progress-fill"
+style="width:60%"></div>
+
+</div>
+
+<!-- QUESTION CARD -->
+
+<div class="quiz-card">
+
+<h2>
+
+Do you spend long hours using your phone or computer without breaks?
+</h2>
+
+</div>
+
+<!-- OPTIONS -->
+
+<div
+class="option-card"
+onclick="selectOption(this,3)">
+
+Yes
+
+</div>
+
+<div
+class="option-card"
+onclick="selectOption(this,2)">
+
+Sometimes
+
+</div>
+
+<div
+class="option-card"
+onclick="selectOption(this,0)">
+
+No
+
+</div>
+
+<!-- NEXT BUTTON -->
+
+<button
+class="quiz-button"
+onclick="nextQuestion()">
+
+Next →
+
+</button>
+
+</div>
+
+<script>
+
+let selectedScore = 0;
+
+function selectOption(element, score){
+
+selectedScore = score;
+
+let options =
+document.querySelectorAll('.option-card');
+
+options.forEach(option => {
+
+option.classList.remove('selected-option');
+
+});
+
+element.classList.add('selected-option');
+
+}
+
+function nextQuestion(){
+
+let totalScore =
+localStorage.getItem("riskScore");
+
+if(totalScore === null){
+
+totalScore = 0;
+
+}
+
+totalScore =
+parseInt(totalScore)
++ selectedScore;
+
+localStorage.setItem(
+"riskScore",
+totalScore
+);
+
+window.location.href =
+"risk-q7.html";
+
+}
+
+</script>
+
+</body>
+</html>

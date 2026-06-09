@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>Assessment Result</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+<!-- TOP -->
+
+<div class="result-top">
+
+<p class="result-small">
+Assessment Complete
+</p>
+
+<h1 class="result-title">
+
+Your Risk Result
+
+</h1>
+
+</div>
+
+<!-- RESULT CARD -->
+
+<div class="result-card">
+
+<div id="riskIcon"
+class="result-icon">
+
+<i class="fa-solid fa-shield-heart"></i>
+
+</div>
+
+<h2 id="riskLevel">
+
+Loading...
+
+</h2>
+
+<p id="riskMessage">
+
+Please wait...
+
+</p>
+
+<div class="score-box">
+
+Your Score:
+<span id="riskScore"></span>
+
+</div>
+
+</div>
+
+<!-- RECOMMENDATIONS -->
+
+<div class="recommend-card">
+
+<h2>
+
+🩺 Recommendations
+
+</h2>
+
+<ul id="recommendations">
+
+</ul>
+
+</div>
+
+<!-- ACTION BUTTONS -->
+
+<button
+class="result-button"
+onclick="retakeAssessment()">
+
+Retake Assessment
+
+</button>
+
+<button
+class="home-button"
+onclick="window.location.href='index.html'">
+
+Return Home
+
+</button>
+
+</div>
+
+<script>
+
+let score =
+parseInt(
+localStorage.getItem("riskScore")
+);
+
+if(isNaN(score)){
+
+score = 0;
+
+}
+
+document.getElementById(
+"riskScore"
+).innerText = score;
+
+let level = "";
+let message = "";
+let recommendations = "";
+let color = "";
+
+if(score <= 8){
+
+level = "Low Risk";
+
+message =
+"Your current symptoms indicate a lower risk level.";
+
+recommendations = `
+
+<li>Maintain regular exercise</li>
+
+<li>Avoid prolonged standing</li>
+
+<li>Stay hydrated daily</li>
+
+<li>Continue healthy lifestyle habits</li>
+
+`;
+
+color = "#2bb673";
+
+}
+
+else if(score <= 18){
+
+level = "Moderate Risk";
+
+message =
+"You may be developing venous circulation issues.";
+
+recommendations = `
+
+<li>Consider medical consultation</li>
+
+<li>Use compression stockings if advised</li>
+
+<li>Increase walking and calf exercises</li>
+
+<li>Monitor swelling and heaviness</li>
+
+`;
+
+color = "#ff9800";
+
+}
+
+else{
+
+level = "High Risk";
+
+message =
+"Your responses indicate increased risk of varicose vein complications.";
+
+recommendations = `
+
+<li>Consult vascular specialist promptly</li>
+
+<li>Do not ignore swelling or pain</li>
+
+<li>Medical evaluation is strongly advised</li>
+
+<li>Early treatment may prevent ulcers</li>
+
+`;
+
+color = "#e53935";
+
+}
+
+document.getElementById(
+"riskLevel"
+).innerText = level;
+
+document.getElementById(
+"riskMessage"
+).innerText = message;
+
+document.getElementById(
+"recommendations"
+).innerHTML = recommendations;
+
+document.getElementById(
+"riskIcon"
+).style.background = color;
+
+function retakeAssessment(){
+
+localStorage.removeItem(
+"riskScore"
+);
+
+window.location.href =
+"risk-q1.html";
+
+}
+
+</script>
+
+</body>
+</html>
